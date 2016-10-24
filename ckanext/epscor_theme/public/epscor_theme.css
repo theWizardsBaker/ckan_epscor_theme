@@ -1,0 +1,36 @@
+body {
+    background: #eeeeee url("/base/images/bg.png");
+}
+
+.account-masthead {
+    background: #00171f url("/base/images/bg.png");
+}
+
+.masthead {
+    background-color: #0f70b7;
+}
+
+a.logo img {
+    height: 50px;
+    padding-top: 2px;
+}
+
+.site-footer {
+    background: #0f70b7 url("/base/images/bg.png");
+}
+
+.masthead .navigation .nav-pills li.active a, .masthead .navigation .nav-pills li a:hover {
+    background-color: #6a99bb;
+}
+
+.social {
+    display: none;
+}
+
+.homepage .module-search .module-content {
+    background-color: #106eb3;
+}
+
+.homepage .module-search .tags {
+    background-color: #005671;
+}

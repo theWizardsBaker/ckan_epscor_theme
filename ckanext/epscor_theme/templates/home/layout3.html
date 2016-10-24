@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+{% block promoted  %}
+    <div class="box">
+	<div class="inner">
+            {{ h.recently_changed_packages_activity_stream(limit=4) }}
+	</div>
+    </div>
+{% endblock %}
