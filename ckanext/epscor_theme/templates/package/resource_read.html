@@ -1,0 +1,43 @@
+{% ckan_extends %}
+
+
+{% set private = c.resource.private_resource == 'True' %}
+{% set owner = h.is_owner(c.package) %}
+{% set in_org = h.user_in_org_or_group(c.package.organization.id) %}
+{% set user_is_sysadmin = h.check_access('sysadmin') %}
+{% set acquired =  h.is_dataset_acquired(c.package) %}
+{% set logged_in = true if c.userobj else false %}
+
+{% block pre_primary %}
+{% if owner or is_sysadmin or acquired or not private %}
+	{{ super() }}
+{% endif %}
+{% endblock %}
+
+{% block primary_content %}
+{% if owner or is_sysadmin or acquired or not private %}
+        {{ super() }}
+{% else %}
+	<div class="module-content">
+	<h3>No Access</h3>
+	<div>You do not have access to this resource.</div>
+	<div> Please 
+             <a href="{{ h.url_for(controller='user', action='login') }}" class="btn" >
+              {{ _('Login') }}
+            </a>
+		or
+	     <a href="{{ h.url_for(controller='ckanext.datarequests.controllers.ui_controller:DataRequestsUI', action='new', organization_id=pkg.organization.id) }}" class="btn" >
+              {{ _('Request Access') }}
+            </a>
+	</div>
+	</div>
+{% endif %}
+
+{% endblock %}
+
+{% block secondary_content %}
+{% if owner or is_sysadmin or acquired or not private %}
+        {{ super() }}
+{% endif %}
+{% endblock %}
+
