@@ -25,10 +25,12 @@
         	<span class="info-block info-block-small">
           	<i class="icon-info-sign"></i>
           	{% trans %}
-            		Private data resources can be searched by anyone but their contents will remain hidden. The resouce can only be accessed by granting access to Organizations or individual Users.
+            		Private data resources can be searched by anyone but their contents will remain hidden. The resouce can only be accessed by granting access to individual Users.
           	{% endtrans %}
         	</span>
       	</div>
+  	{% set users_attrs = {'data-module': 'autocomplete', 'data-module-tags': '', 'data-module-source': '/api/2/util/user/autocomplete?q=?'} %}
+  	{{ form.input('allowed_users', label=_('Allowed Users'), id='field-allowed_users', placeholder=_('Allowed Users'), value=data.allowed_users, error=errors.custom_text, classes=['control-full'], attrs=users_attrs) }}
    	</div>
 	{% endblock basic_fields_private_resource %}
 {% endblock basic_fields  %}

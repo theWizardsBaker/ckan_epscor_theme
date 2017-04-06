@@ -4,10 +4,10 @@
 {% set owner = h.is_owner(pkg) %}
 {% set in_org = h.user_in_org_or_group(pkg.organization.id) %}
 {% set user_is_sysadmin = h.check_access('sysadmin') %}
-{% set acquired =  h.is_dataset_acquired(pkg) %}
+{% set acquired = h.is_dataresource_acquired(res) %}
 
  {% block resource_item_title %}
-	{% if owner or is_sysadmin or h.can_read(pkg) or acquired  or not private %}
+	{% if owner or is_sysadmin or acquired or not private %}
           <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
                 {{ h.resource_display_name(res) | truncate(50) }}
                 <span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>

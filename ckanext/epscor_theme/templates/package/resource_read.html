@@ -5,8 +5,8 @@
 {% set owner = h.is_owner(c.package) %}
 {% set in_org = h.user_in_org_or_group(c.package.organization.id) %}
 {% set user_is_sysadmin = h.check_access('sysadmin') %}
-{% set acquired =  h.is_dataset_acquired(c.package) %}
 {% set logged_in = true if c.userobj else false %}
+{% set acquired =  h.is_dataresource_acquired(c.resource)  %}
 
 {% block pre_primary %}
 {% if owner or is_sysadmin or acquired or not private %}
@@ -16,7 +16,7 @@
 
 {% block primary_content %}
 {% if owner or is_sysadmin or acquired or not private %}
-        {{ super() }}
+	{{ super() }}
 {% else %}
 	<div class="module-content">
 	<h3>No Access</h3>
